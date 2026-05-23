@@ -30,39 +30,24 @@
 
 import {
   auth,
-  provider,
-  signInWithEmailAndPassword,
-  signInWithPopup
+  createUserWithEmailAndPassword
 } from './firebase-config.js';
 
-const loginBtn = document.getElementById('loginBtn');
-const googleLogin = document.getElementById('googleLogin');
+const registerBtn = document.getElementById('registerBtn');
 
-loginBtn.addEventListener('click', () => {
+registerBtn.addEventListener('click', () => {
 
-  const email = document.getElementById('loginEmail').value;
-  const password = document.getElementById('loginPassword').value;
+  const email = document.getElementById('registerEmail').value;
 
-  signInWithEmailAndPassword(auth, email, password)
-    .then(() => {
-      alert('Đăng nhập thành công');
-      window.location.href = 'index.html';
-    })
+  const password = document.getElementById('registerPassword').value;
 
-    .catch((error) => {
-      alert(error.message);
-    });
+  createUserWithEmailAndPassword(auth, email, password)
 
-});
-
-googleLogin.addEventListener('click', () => {
-
-  signInWithPopup(auth, provider)
     .then(() => {
 
-      alert('Đăng nhập Google thành công');
+      alert("Đăng ký thành công");
 
-      window.location.href = 'index.html';
+      window.location.href = "login.html";
 
     })
 
@@ -75,6 +60,5 @@ googleLogin.addEventListener('click', () => {
 });
 
 </script>
-
 </body>
 </html>

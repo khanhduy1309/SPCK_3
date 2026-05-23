@@ -8,8 +8,8 @@ import {
   onAuthStateChanged,
   GoogleAuthProvider,
   signInWithPopup
-} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
-
+}
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 const firebaseConfig = {
   apiKey: "AIzaSyBOwt2CpF5T9f5gigQLi4UIA0KcX7uM67c",
   authDomain: "khanhduy-3aa91.firebaseapp.com",
@@ -34,4 +34,4 @@ export {
   signOut,
   onAuthStateChanged,
   signInWithPopup
-};
+}; 
