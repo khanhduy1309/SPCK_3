@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Đăng nhập</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="auth-container">
+  <div class="auth-box">
+    <h2>Đăng nhập</h2>
+
+    <input type="email" id="loginEmail" placeholder="Nhập email">
+    <input type="password" id="loginPassword" placeholder="Nhập mật khẩu">
+
+    <button id="loginBtn">Đăng nhập</button>
+    <button id="googleLogin">
+  Đăng nhập bằng Google
+</button>
+
+    <p>Chưa có tài khoản?
+      <a href="register.html">Đăng ký</a>
+    </p>
+  </div>
+</div>
+
+<script type="module">
+
+import {
+  auth,
+  provider,
+  signInWithEmailAndPassword,
+  signInWithPopup
+} from './firebase-config.js';
+
+const loginBtn = document.getElementById('loginBtn');
+const googleLogin = document.getElementById('googleLogin');
+
+loginBtn.addEventListener('click', () => {
+
+  const email = document.getElementById('loginEmail').value;
+  const password = document.getElementById('loginPassword').value;
+
+  signInWithEmailAndPassword(auth, email, password)
+    .then(() => {
+      alert('Đăng nhập thành công');
+      window.location.href = 'index.html';
+    })
+
+    .catch((error) => {
+      alert(error.message);
+    });
+
+});
+
+googleLogin.addEventListener('click', () => {
+
+  signInWithPopup(auth, provider)
+    .then(() => {
+
+      alert('Đăng nhập Google thành công');
+
+      window.location.href = 'index.html';
+
+    })
+
+    .catch((error) => {
+
+      alert(error.message);
+
+    });
+
+});
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Thông tin tài khoản</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="profile-box">
+  <h2>Tài khoản người dùng</h2>
+
+  <p id="userEmail"></p>
+
+  <button id="logoutBtn">Đăng xuất</button>
+</div>
+
+<script type="module">
+import {
+  auth,
+  signOut,
+  onAuthStateChanged
+} from './firebase-config.js';
+
+const userEmail = document.getElementById('userEmail');
+const logoutBtn = document.getElementById('logoutBtn');
+
+onAuthStateChanged(auth, (user) => {
+  if(user){
+    userEmail.innerHTML = `Email: ${user.email}`;
+  } else {
+    window.location.href = 'login.html';
+  }
+});
+
+logoutBtn.addEventListener('click', () => {
+  signOut(auth)
+    .then(() => {
+      alert('Đăng xuất thành công');
+      window.location.href = 'login.html';
+    });
+});
+</script>
+
+</body>
+</html>
